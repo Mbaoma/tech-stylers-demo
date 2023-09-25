@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  cache:
+    image: redis:alpine
+    ports:
+      - 6379:6379
+    volumes:
+      - cache:/data
+    networks:
+      - default
+
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_DATABASE=testdb
+
+  kloudafrica:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - REDIS_URL=redis://cache:6379
+      - MONGODB_URI_LOCAL=mongodb://mongo:27017/testdb
+    ports:
+      - 3000:3000
+    depends_on:
+      - cache
+      - mongo
+    networks:
+      - default
+
+volumes:
+  cache:
+    driver: local
+
+networks:
+  default:
+    driver: bridge

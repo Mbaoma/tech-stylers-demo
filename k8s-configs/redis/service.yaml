@@ -4,7 +4,7 @@ metadata:
   name: cache-service
 spec:
   selector:
-    app: kloudafrica
+    app: redis  
   ports:
     - protocol: TCP
       port: 6379

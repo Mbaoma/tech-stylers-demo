@@ -18,7 +18,7 @@ spec:
           ports:
             - containerPort: 6379
           volumeMounts:
-            - name: cache-volume
+            - name: cache-storage
               mountPath: /data
           resources:
                   limits:
@@ -29,5 +29,6 @@ spec:
                     cpu: "250m"
 
       volumes:
-        - name: cache-volume
-          emptyDir: {}
+        - name: cache-storage
+          persistentVolumeClaim:
+            claimName: app-pvc

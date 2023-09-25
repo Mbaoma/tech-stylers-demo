@@ -46,12 +46,38 @@ $ az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
 $ kubectl get nodes
 ```
 
-- Create a secret
+- Create secrets for the application
 ```
 $ kubectl create secret generic <secret-name> --from-literal key=value
+```
+
+- Create ACR login secrets 
+```
+$ kubectl create secret docker-registry my-acr-secret> \
+  --docker-server=<your-acr-login-server> \
+  --docker-username=<your-acr-username> \     
+  --docker-password=<your-acr-password-or-token> \
+  --docker-email=<your-email>
+```
+
+- Install NGINX ingress controller
+```
+$ helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+$ helm repo update
+$ helm install ingress-nginx ingress-nginx/ingress-nginx
+```
+
+- Get the Public IP address
+```
+$ kubectl get service -l app.kubernetes.io/name=ingress-nginx -o jsonpath='{.items[0].status.loadBalancer.ingress[0].ip}'
 ```
 
 - Create the deployments
 ```
 $ kubectl apply -f k8s-configs
+$ kubectl apply -f k8s-configs/app
+$ kubectl apply -f k8s-configs/mongo
+$ kubectl apply -f k8s-configs/redis
 ```
+
+<img width="1431" alt="image" src="https://github.com/brikis98/terraform-up-and-running-code/assets/49791498/87f4d698-950c-4f24-877f-362424709972">

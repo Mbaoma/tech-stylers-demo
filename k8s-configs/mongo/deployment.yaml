@@ -31,5 +31,6 @@ spec:
                     memory: "300Mi"
                     cpu: "250m"
       volumes:
-        - name: cache-volume
-          emptyDir: {}
+        - name: cache-storage
+          persistentVolumeClaim:
+            claimName: app-pvc

@@ -1,10 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: cache-service
+  name: techstyler-service
 spec:
+  type: LoadBalancer
   selector:
-    app: kloudafrica
+    app: app
   ports:
     - protocol: TCP
       port: 3000

@@ -30,12 +30,15 @@ spec:
                   key: MONGODB_URI_LOCAL
           resources:
             limits:
-              memory: "500Mi" 
-              cpu: "500m"
+              memory: "256Mi" 
+              cpu: "200m"
             requests:
-              memory: "300Mi"
-              cpu: "250m"
+              memory: "128Mi"
+              cpu: "100m"
 
       volumes:
-        - name: cache-volume
-          emptyDir: {}
+        - name: cache-storage
+          persistentVolumeClaim:
+            claimName: app-pvc
+      imagePullSecrets:
+        - name: my-acr-secret

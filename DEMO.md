@@ -81,3 +81,5 @@ $ kubectl apply -f k8s-configs/redis
 ```
 
 <img width="1431" alt="image" src="https://github.com/brikis98/terraform-up-and-running-code/assets/49791498/87f4d698-950c-4f24-877f-362424709972">
+
+<img width="1431" alt="image" src="https://github.com/Mbaoma/fastAPI/assets/49791498/da4ed8cf-d3af-42bd-b72c-5bf9a07033ca">

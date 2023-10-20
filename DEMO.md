@@ -66,18 +66,6 @@ $ kubectl create secret docker-registry my-acr-secret \
   --docker-email=<your-email>
 ```
 
-- Install NGINX ingress controller
-```
-$ helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-$ helm repo update
-$ helm install ingress-nginx ingress-nginx/ingress-nginx
-```
-
-- Get the Public IP address
-```
-$ kubectl get service -l app.kubernetes.io/name=ingress-nginx -o jsonpath='{.items[0].status.loadBalancer.ingress[0].ip}'
-```
-
 - Create the deployments
 ```
 $ kubectl apply -f k8s-configs

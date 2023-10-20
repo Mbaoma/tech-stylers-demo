@@ -33,10 +33,13 @@ $ docker push <acrLoginServer>/image-name:tag
 ```
 
 - Get your image name and tag
+```
 $ az acr repository list --name <ACRname>    
 $ az acr repository show-tags --name <ACRname> --repository <repo>
+```
 
 - Create and connect to the AKS CLI
+
 [Guide](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli)
 ```
 $ az aks create -g myResourceGroup -n myAKSCluster --enable-managed-identity --node-count 1 --enable-addons monitoring --generate-ssh-keys
@@ -48,12 +51,15 @@ $ kubectl get nodes
 
 - Create secrets for the application
 ```
-$ kubectl create secret generic <secret-name> --from-literal key=value
+kubectl create secret generic app-secrets \
+--from-literal MONGO_INITDB_DATABASE=db-name \
+--from-literal REDIS_URL=redis://cache:6379 \
+--from-literal MONGODB_URI_LOCAL=mongodb://mongo-service:27017/db-name
 ```
 
 - Create ACR login secrets 
 ```
-$ kubectl create secret docker-registry my-acr-secret> \
+$ kubectl create secret docker-registry my-acr-secret \
   --docker-server=<your-acr-login-server> \
   --docker-username=<your-acr-username> \     
   --docker-password=<your-acr-password-or-token> \

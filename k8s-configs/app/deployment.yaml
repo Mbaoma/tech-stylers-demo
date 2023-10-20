@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: techstylersacr.azurecr.io/mbaoma/tech-stylers:latest
+          image: techstylersacr.azurecr.io/mbaoma/tech-stylers-image:latest
           ports:
             - containerPort: 3000
           env:
